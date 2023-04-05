@@ -11,14 +11,14 @@
 	$user = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'");
 	$data_user = mysqli_fetch_assoc($user);
 
-	$siswa = mysqli_query($koneksi, "SELECT * FROM siswa ORDER BY kelas_siswa ASC, nama_siswa ASC");
+	$tabungan = mysqli_query($koneksi, "SELECT * FROM tabungan INNER JOIN siswa ON tabungan.id_siswa = siswa.id_siswa ORDER BY kelas_siswa ASC, nama_siswa ASC");
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Siswa</title>
+	<title>Tabungan</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,8 +29,8 @@
   <?php include_once 'include/sidebar.php'; ?>
 
   <main>
-  	<h1>Siswa</h1>
-  	<a href="tambah_siswa.php" class="button">+ Tambah Siswa</a>
+  	<h1>Tabungan</h1>
+  	<a href="tambah_tabungan.php" class="button">+ Tambah Tabungan</a>
   	<hr>
   	<table border="1" cellspacing="0" cellpadding="10">
   		<thead>
@@ -38,19 +38,23 @@
   				<th>No.</th>
   				<th>Nama Siswa</th>
   				<th>Kelas Siswa</th>
+  				<th>Saldo</th>
+  				<th>Tanggal Dibuka</th>
   				<th>Aksi</th>
   			</tr>
   		</thead>
   		<tbody>
   			<?php $i = 1; ?>
-  			<?php foreach ($siswa as $ds): ?>
+  			<?php foreach ($tabungan as $dt): ?>
   				<tr>
   					<td><?= $i++; ?></td>
-  					<td><?= ucwords($ds['nama_siswa']); ?></td>
-  					<td><?= strtoupper($ds['kelas_siswa']); ?></td>
+  					<td><?= ucwords($dt['nama_siswa']); ?></td>
+  					<td><?= strtoupper($dt['kelas_siswa']); ?></td>
+  					<td>Rp. <?= number_format($dt['saldo']); ?></td>
+  					<td><?= $dt['tanggal_dibuka']; ?></td>
   					<td>
-  						<a href="ubah_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" class="button">Ubah</a>
-  						<a href="hapus_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus siswa <?= $ds['nama_siswa']; ?>?')" class="button">Hapus</a>
+  						<a href="riwayat_tabungan.php?id_tabungan=<?= $dt['id_tabungan']; ?>" class="button">Nabung</a>
+  						<a href="hapus_tabungan.php?id_tabungan=<?= $dt['id_tabungan']; ?>" class="button" onclick="return confirm('Apakah Anda yakin ingin menghapus Tabungan <?= ucwords($dt['nama_siswa']); ?>?')">Hapus</a>
   					</td>
   				</tr>
   			<?php endforeach ?>

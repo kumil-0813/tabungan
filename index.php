@@ -1,6 +1,6 @@
 <?php 
 require_once 'koneksi.php';
-
+echo password_hash("ikmal123", PASSWORD_DEFAULT);
 if (isset($_SESSION['id_user'])) {
     header("Location: dashboard.php");
     exit;
@@ -14,20 +14,29 @@ if (isset($_POST['btnLogin'])) {
 
     if ($data = mysqli_fetch_assoc($query)) {
         if (password_verify($password, $data['password'])) {
-            echo "berhasil";
             $_SESSION['id_user'] = $data['id_user'];
             header("Location: dashboard.php");
             exit;
         }
         else
         {
-            echo "Username atau Password salah!";
+            echo "
+                <script>
+                    alert('Username atau Password salah!')
+                    window.history.back();
+                </script>
+            ";
             exit;
         }
     }
     else
     {
-        echo "Username atau Password salah!";
+        echo "
+            <script>
+                alert('Username atau Password salah!')
+                window.history.back();
+            </script>
+        ";
         exit;
     }
 }

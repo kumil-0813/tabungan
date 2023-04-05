@@ -11,14 +11,15 @@
 	$user = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'");
 	$data_user = mysqli_fetch_assoc($user);
 
-	$siswa = mysqli_query($koneksi, "SELECT * FROM siswa ORDER BY kelas_siswa ASC, nama_siswa ASC");
- ?>
+	$user = mysqli_query($koneksi, "SELECT * FROM user ORDER BY username ASC");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Siswa</title>
+	<title>User</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,28 +30,28 @@
   <?php include_once 'include/sidebar.php'; ?>
 
   <main>
-  	<h1>Siswa</h1>
-  	<a href="tambah_siswa.php" class="button">+ Tambah Siswa</a>
+  	<h1>User</h1>
+  	<a href="tambah_user.php" class="button">+ Tambah User</a>
   	<hr>
   	<table border="1" cellspacing="0" cellpadding="10">
   		<thead>
   			<tr>
   				<th>No.</th>
-  				<th>Nama Siswa</th>
-  				<th>Kelas Siswa</th>
+  				<th>Username</th>
+  				<th>Nama Lengkap</th>
   				<th>Aksi</th>
   			</tr>
   		</thead>
   		<tbody>
   			<?php $i = 1; ?>
-  			<?php foreach ($siswa as $ds): ?>
+  			<?php foreach ($user as $du): ?>
   				<tr>
   					<td><?= $i++; ?></td>
-  					<td><?= ucwords($ds['nama_siswa']); ?></td>
-  					<td><?= strtoupper($ds['kelas_siswa']); ?></td>
+  					<td><?= ucwords($du['username']); ?></td>
+  					<td><?= ucwords($du['nama_lengkap']); ?></td>
   					<td>
-  						<a href="ubah_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" class="button">Ubah</a>
-  						<a href="hapus_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus siswa <?= $ds['nama_siswa']; ?>?')" class="button">Hapus</a>
+  						<a href="ubah_user.php?id_user=<?= $du['id_user']; ?>" class="button">Ubah</a>
+  						<a href="hapus_user.php?id_user=<?= $du['id_user']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus user <?= $du['username']; ?>?')" class="button">Hapus</a>
   					</td>
   				</tr>
   			<?php endforeach ?>

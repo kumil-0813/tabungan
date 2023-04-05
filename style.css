@@ -84,7 +84,7 @@ body {
 }
 
 .topbar ul li {
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 .topbar ul li a {
@@ -107,20 +107,24 @@ body {
 
 .sidebar h2 {
   margin: 10px;
+  text-align: center;
 }
 
 .sidebar ul {
-  margin: 0;
-  padding: 0;
+  padding: 10px;
+  padding-right: 25px;
   list-style: none;
-}
-
-.sidebar ul li {
-  margin: 10px;
 }
 
 .sidebar ul li a {
   color: #333;
+  border: 2px solid black;
+  border-radius: 4px;
+  width: 100%;
+  padding: 5px;
+  padding-right: 0px;
+  margin: 5px;
+  display: inline-block;
   text-decoration: none;
 }
 
