@@ -29,11 +29,9 @@
   <main>
   	<h1>Profile</h1>
   	<ul>
-  		<li>Username: <?= $data_user['username']; ?></li>
-  		<li>Nama Lengkap: <?= $data_user['nama_lengkap']; ?></li>
+  		<li><h3>Username:</h3> <h4><?= $data_user['username']; ?></h4></li>
+  		<li><h3>Nama Lengkap:</h3> <h4><?= $data_user['nama_lengkap']; ?></h4></li>
   	</ul>
-  	<a class="button" href="ubah_profile.php">Ubah</a>
-  	<a class="button" href="ganti_password.php">Ganti Password</a>
   </main>
 </body>
 </html>
